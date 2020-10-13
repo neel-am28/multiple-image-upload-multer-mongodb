@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+      <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+      <title>Multiple Image Upload</title>
+</head>
+
+<body>
+      <div class="container">
+            <div class="row">
+                  
+                  <form class="my-4" action="/" method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                              <label>Select photos</label>
+                              <input type="file" class="form-control-file" name="photo" multiple>
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                  </form>
+                  <% if (records.length > 0){ %>
+                        <% records.forEach(function(row){ %> 
+                              <% 
+                                    const imgnames = row.photos;
+                                    const imgArr = imgnames.split(',');
+                                    imgArr.forEach(img => {
+                              %>
+                              <img src="/uploads/<%= img %>" alt="image" style="width:300px;height:250px;margin:5px auto;" />            
+                        <%  }) %>
+                  <% }) } %>
+            </div>
+      </div>
+</body>
+
+</html>
